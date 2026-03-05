@@ -1,0 +1,44 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>記事作成</h1>
+
+<form method="post" action="/articles" enctype="multipart/form-data" th:object="${articleForm}">
+    <div>
+        タイトル：<input type="text" th:field="*{title}">
+        <div th:errors="*{title}"></div>
+    </div>
+
+    <div>
+        本文：<br>
+        <textarea th:field="*{body}" rows="10" cols="60"></textarea>
+        <div th:errors="*{body}"></div>
+    </div>
+
+    <div>
+        カテゴリ：
+        <select th:field="*{category}">
+            <option th:each="c : ${categories}" th:value="${c}" th:text="${c}"></option>
+        </select>
+        <div th:errors="*{category}"></div>
+    </div>
+
+    <div>
+        公開状態：
+        <select th:field="*{status}">
+            <option th:each="s : ${statuses}" th:value="${s}" th:text="${s}"></option>
+        </select>
+        <div th:errors="*{status}"></div>
+    </div>
+
+    <div>
+        画像（任意）：<input type="file" th:field="*{image}">
+        <div th:errors="*{image}"></div>
+    </div>
+
+    <button type="submit">投稿</button>
+</form>
+
+<p><a href="/articles">一覧へ</a></p>
+</body>
+</html>

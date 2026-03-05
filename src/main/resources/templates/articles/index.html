@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>公開記事一覧</h1>
+
+<form action="/logout" method="post">
+    <button type="submit">ログアウト</button>
+</form>
+
+<form method="get" action="/articles">
+    <input type="text" name="q" th:value="${q}" placeholder="タイトル検索">
+    <button type="submit">検索</button>
+</form>
+
+<p><a href="/articles/new">新規作成</a>（ログイン必須）</p>
+<p><a href="/me/drafts">自分の下書き</a>（任意）</p>
+
+<ul>
+    <li th:each="a : ${articles}">
+        <a th:href="@{/articles/{id}(id=${a.id})}" th:text="${a.title}"></a>
+        <span th:text="${a.category}"></span>
+    </li>
+</ul>
+
+</body>
+</html>

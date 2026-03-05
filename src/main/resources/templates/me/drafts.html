@@ -1,0 +1,15 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>自分の下書き一覧</h1>
+
+<ul>
+    <li th:each="a : ${drafts}">
+        <a th:href="@{/articles/{id}(id=${a.id})}" th:text="${a.title}"></a>
+        <a th:href="@{/articles/{id}/edit(id=${a.id})}">編集</a>
+    </li>
+</ul>
+
+<p><a href="/articles">公開記事一覧へ</a></p>
+</body>
+</html>

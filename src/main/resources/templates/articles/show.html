@@ -1,0 +1,26 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1 th:text="${article.title}"></h1>
+<p>
+    <span th:text="${article.category}"></span> /
+    <span th:text="${article.status}"></span>
+</p>
+
+<div th:if="${article.imagePath != null}">
+    <img th:src="${article.imagePath}" style="max-width:300px;">
+</div>
+
+<pre th:text="${article.body}"></pre>
+
+<p>
+    <a th:href="@{/articles/{id}/edit(id=${article.id})}">編集</a>
+</p>
+
+<form th:action="@{/articles/{id}/delete(id=${article.id})}" method="post">
+    <button type="submit">削除</button>
+</form>
+
+<p><a href="/articles">一覧へ</a></p>
+</body>
+</html>
